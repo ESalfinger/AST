@@ -10,3 +10,6 @@ Important actions on list:
 * insert after
 * remove duplicates
 * reverse
+
+# Enigma
+C++ implementation of the enigma machine.
