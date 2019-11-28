@@ -1,3 +1,0 @@
-/Users/eliassalfinger/Documents/FH_Hagenberg/WS1920/45_MTD211_AST/AST/DList/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/eliassalfinger/Documents/FH_Hagenberg/WS1920/45_MTD211_AST/AST/DList/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/eliassalfinger/Documents/FH_Hagenberg/WS1920/45_MTD211_AST/AST/DList/cmake-build-debug/CMakeFiles/DList.dir
