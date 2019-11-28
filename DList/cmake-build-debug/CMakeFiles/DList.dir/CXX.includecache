@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/eliassalfinger/Documents/FH_Hagenberg/WS1920/45_MTD211_AST/AST/DList/DList.cpp
+headers/DList.h
+/Users/eliassalfinger/Documents/FH_Hagenberg/WS1920/45_MTD211_AST/AST/DList/headers/DList.h
+headers/PointerKey.h
+/Users/eliassalfinger/Documents/FH_Hagenberg/WS1920/45_MTD211_AST/AST/DList/headers/PointerKey.h
+headers/DListIterator.h
+/Users/eliassalfinger/Documents/FH_Hagenberg/WS1920/45_MTD211_AST/AST/DList/headers/DListIterator.h
+iostream
+-
+
+/Users/eliassalfinger/Documents/FH_Hagenberg/WS1920/45_MTD211_AST/AST/DList/headers/DList.h
+Node.h
+/Users/eliassalfinger/Documents/FH_Hagenberg/WS1920/45_MTD211_AST/AST/DList/headers/Node.h
+IKey.h
+/Users/eliassalfinger/Documents/FH_Hagenberg/WS1920/45_MTD211_AST/AST/DList/headers/IKey.h
+IFIterator.h
+/Users/eliassalfinger/Documents/FH_Hagenberg/WS1920/45_MTD211_AST/AST/DList/headers/IFIterator.h
+
+/Users/eliassalfinger/Documents/FH_Hagenberg/WS1920/45_MTD211_AST/AST/DList/headers/DListIterator.h
+IFIterator.h
+/Users/eliassalfinger/Documents/FH_Hagenberg/WS1920/45_MTD211_AST/AST/DList/headers/IFIterator.h
+Node.h
+/Users/eliassalfinger/Documents/FH_Hagenberg/WS1920/45_MTD211_AST/AST/DList/headers/Node.h
+
+/Users/eliassalfinger/Documents/FH_Hagenberg/WS1920/45_MTD211_AST/AST/DList/headers/IFIterator.h
+
+/Users/eliassalfinger/Documents/FH_Hagenberg/WS1920/45_MTD211_AST/AST/DList/headers/IKey.h
+
+/Users/eliassalfinger/Documents/FH_Hagenberg/WS1920/45_MTD211_AST/AST/DList/headers/Node.h
+
+/Users/eliassalfinger/Documents/FH_Hagenberg/WS1920/45_MTD211_AST/AST/DList/headers/PointerKey.h
+IKey.h
+/Users/eliassalfinger/Documents/FH_Hagenberg/WS1920/45_MTD211_AST/AST/DList/headers/IKey.h
+
