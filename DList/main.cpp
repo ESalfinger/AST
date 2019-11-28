@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include "headers/DList.h"
+using namespace std;
 
 int main() {
     DList *list = new DList();
@@ -18,10 +19,10 @@ int main() {
     list->append(&s);
     list->insertAfter(&s2, &s3);
     list->printList();
-    std::cout << "---------NO DOUBLES---------" << std::endl;
+    cout << "---------NO DOUBLES---------" << endl;
     list->removeDoubles();
     list->printList();
-    std::cout << "---------REVERSED---------" << std::endl;
+    cout << "---------REVERSED---------" << endl;
     list->reverse();
     list->printList();
 

@@ -9,7 +9,10 @@
 
 DList::DList() {}
 
-DList::~DList() {}
+DList::~DList() {
+    delete head;
+    delete tail;
+}
 
 void DList::prepend(void *data) {
     head = new Node(nullptr, data, head);
@@ -22,18 +25,15 @@ void DList::prepend(void *data) {
 
 void DList::append(void *data) {
     tail = new Node(tail, data, nullptr);
-    head == nullptr ? head : tail->prev->next = tail;
+    head == nullptr ? head = tail : tail->prev->next = tail;
 }
 
 bool DList::insertAfter(void *prev, void *data) {
-    Node *current = head;
+    PointerKey key(prev);
+    Node *found = forwardSearch(head, key);
 
-    while (current->data != prev) {
-        current = current->next;
-    }
-
-    if (current != nullptr) {
-        insertAfter(current, data);
+    if (found != nullptr) {
+        insertAfter(found, data);
         return true;
     }
 
@@ -47,7 +47,7 @@ void DList::insertAfter(Node *current, void *data) {
 }
 
 Node *DList::forwardSearch(Node *current, IKey &key) {
-    while (current != nullptr && !key.matches(current->data)) {
+    while (current != nullptr && !key.matches(current->getData())) {
         current = current->next;
     }
 
@@ -61,8 +61,9 @@ void *DList::forwardSearch(IKey &key) {
 }
 
 void DList::forwardRemove(void *data) {
-    PointerKey key = new PointerKey((std::string*)data);
+    PointerKey key(data);
     Node *toRemove = forwardSearch(head, key);
+    toRemove = forwardSearch(toRemove->next, key);
 
     removeNode(toRemove);
 }
@@ -71,14 +72,7 @@ void DList::removeDoubles() {
     Node *current = head;
 
     while (current != nullptr) {
-        Node *toRemove = current->next;
-        while (toRemove != nullptr && toRemove->getData() != current->getData()) {
-            toRemove = toRemove->next;
-        }
-        if (toRemove != nullptr) {
-            removeNode(toRemove);
-        }
-
+        forwardRemove(current->getData());
         current = current->next;
     }
 }

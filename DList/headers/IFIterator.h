@@ -7,7 +7,7 @@
 
 class IFIterator {
 public:
-    virtual ~IFIterator() = default;;
+    virtual ~IFIterator() = default;
 
     virtual bool hasNext() = 0;
 

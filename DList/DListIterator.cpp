@@ -7,6 +7,7 @@
 DListIterator::DListIterator(Node *start) : current(start) {}
 
 DListIterator::~DListIterator() {
+    delete current;
 }
 
 bool DListIterator::hasNext() {
