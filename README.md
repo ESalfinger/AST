@@ -1,7 +1,10 @@
 # AST
 Exercises for applied software technology on FH Hagenberg
 
-# DList
+## Game of Life
+C++ implementation of Conway's Game of Life.
+
+## DList
 C++ implementation of a double linked list.
 
 Important actions on list:
@@ -11,5 +14,5 @@ Important actions on list:
 * remove duplicates
 * reverse
 
-# Enigma
+## Enigma
 C++ implementation of the enigma machine.
