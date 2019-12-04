@@ -16,6 +16,7 @@ enum RotorType {
     ROTOR_TYPE_IV = 3017 ,
     ROTOR_TYPE_V = 42 ,
 };
+
 const int ReflectorSeed = 37537;
 
 class Enigma {
@@ -55,6 +56,8 @@ public :
 
 // get the corresponding char for the int ’i’ (range: [0..NUM_LETTERS[)
     char toChar(int i);
+
+    void printConfig();
 
 private :
     int m_numRotors; // the number of rotors

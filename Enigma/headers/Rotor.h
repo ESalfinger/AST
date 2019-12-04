@@ -15,6 +15,8 @@ public :
     virtual ~Rotor();
 
     virtual void init();
+
+    void turn(int times);
 };
 
 #endif //ENIGMA_ROTOR_H
