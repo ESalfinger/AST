@@ -15,9 +15,14 @@
 extern char board[HEIGHT][WIDTH];
 
 #define EMPTY (' ')
-#define DEAD ('X')
 
 enum borderMode { box, loop, torus };
+
+int countSurroundingAlive(char (*tempArray)[WIDTH], int i, int j);
+
+int loopHorizontal(char (*tempArray)[WIDTH], int i, int j, int aliveCount);
+
+int loopVertical(char (*tempArray)[WIDTH], int i, int j, int aliveCount);
 
 void clearBoard();
 
