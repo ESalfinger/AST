@@ -1,7 +1,3 @@
-//
-// Created by Elias Salfinger on 20.11.19.
-//
-
 #ifndef DLIST_IFITERATOR_H
 #define DLIST_IFITERATOR_H
 

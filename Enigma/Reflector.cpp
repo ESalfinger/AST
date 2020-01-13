@@ -1,6 +1,3 @@
-//
-// Created by Elias Salfinger on 28.11.19.
-//
 #include <cstdlib>
 #include "headers/Reflector.h"
 

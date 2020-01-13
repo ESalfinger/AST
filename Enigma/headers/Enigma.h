@@ -1,7 +1,3 @@
-//
-// Created by Elias Salfinger on 28.11.19.
-//
-
 #ifndef ENIGMA_ENIGMA_H
 #define ENIGMA_ENIGMA_H
 
@@ -10,17 +6,19 @@
 #include <string>
 
 enum RotorType {
-    ROTOR_TYPE_I = 56789 ,
-    ROTOR_TYPE_II = 33170 ,
-    ROTOR_TYPE_III = 7013023 ,
-    ROTOR_TYPE_IV = 3017 ,
-    ROTOR_TYPE_V = 42 ,
+    ROTOR_TYPE_I = 56789,
+    ROTOR_TYPE_II = 33170,
+    ROTOR_TYPE_III = 7013023,
+    ROTOR_TYPE_IV = 3017,
+    ROTOR_TYPE_V = 42,
 };
 
 const int ReflectorSeed = 37537;
 
 class Enigma {
 public :
+    static int rotorCount;
+
     Enigma(int numRotors);
 
     virtual ~Enigma();
@@ -32,10 +30,10 @@ public :
     void changeRotor(Rotor &rotor, int posIdx);
 
 // set the daily key settings
-    void setDailyKey(char key[]);
+    void setDailyKey(char *key);
 
 // set the message key settings
-    void setMessageKey(char key[]);
+    void setMessageKey(std::string key);
 
 // clear daily and message key settings
     void reset();
@@ -49,7 +47,7 @@ public :
     std::string decrypt(const std::string &msg);
 
 // apply the message key setting (set offset for each rotor)
-    void applyMsgKey();
+    void applyDailyKey();
 
 // get the index of the char ’c’ (range: [A..Z,a..z])
     int toInt(char c);
@@ -61,9 +59,10 @@ public :
 
 private :
     int m_numRotors; // the number of rotors
-    Rotor **m_rotors;// array of pointers to rotors
+    Rotor **m_rotors;
     Reflector m_reflector; // the reflector module
-    char *m_msgKey;// the current msgKey
+    char *m_dailyKey;// the current daily Key
+    int m_turns[];
 };
 
 #endif //ENIGMA_ENIGMA_H

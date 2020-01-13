@@ -1,6 +1,3 @@
-//
-// Created by Elias Salfinger on 28.11.19.
-//
 #include <iostream>
 #include <cstdlib>
 #include "headers/EncoderModule.h"
@@ -28,5 +25,6 @@ int EncoderModule::getIndex(int element) const {
             return i;
         }
     }
+
     return 0;
 }

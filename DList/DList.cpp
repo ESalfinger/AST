@@ -1,7 +1,3 @@
-//
-// Created by Elias Salfinger on 20.11.19.
-//
-
 #include "headers/DList.h"
 #include "headers/PointerKey.h"
 #include "headers/DListIterator.h"
@@ -63,7 +59,6 @@ void *DList::forwardSearch(IKey &key) {
 void DList::forwardRemove(void *data) {
     PointerKey key(data);
     Node *toRemove = forwardSearch(head, key);
-    toRemove = forwardSearch(toRemove->next, key);
 
     removeNode(toRemove);
 }
@@ -72,7 +67,10 @@ void DList::removeDoubles() {
     Node *current = head;
 
     while (current != nullptr) {
-        forwardRemove(current->getData());
+        PointerKey key(current->getData());
+        Node *toRemove = forwardSearch(current->next, key);
+        removeNode(toRemove);
+
         current = current->next;
     }
 }
@@ -108,6 +106,8 @@ void DList::removeNode(Node *toRemove) {
         } else {
             toRemove->next->prev = toRemove->prev;
         }
+
+        delete toRemove;
     }
 }
 

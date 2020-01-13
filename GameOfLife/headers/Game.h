@@ -1,12 +1,8 @@
-//
-// Created by Elias Salfinger on 04.12.19.
-//
-
 #ifndef GAMEOFLIFE_GAME_H
 #define GAMEOFLIFE_GAME_H
 
 #ifndef WIDTH
-#  define WIDTH 50
+#  define WIDTH 40
 #endif
 #ifndef HEIGHT
 #  define HEIGHT 30

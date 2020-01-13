@@ -1,7 +1,3 @@
-//
-// Created by Elias Salfinger on 28.11.19.
-//
-
 #ifndef ENIGMA_REFLECTOR_H
 #define ENIGMA_REFLECTOR_H
 

@@ -1,12 +1,13 @@
-//
-// Created by Elias Salfinger on 28.11.19.
-//
 #include <iostream>
 #include "headers/Enigma.h"
 
+int Enigma::rotorCount = 0;
+
 Enigma::Enigma(int numRotors) : m_numRotors(numRotors), m_reflector(Reflector(ReflectorSeed)) {
-    m_rotors = new Rotor *[m_numRotors];
+    m_rotors = new Rotor *[numRotors];
+    m_turns[numRotors] = {};
     m_reflector.init();
+    m_dailyKey = nullptr;
 }
 
 Enigma::~Enigma() {
@@ -14,14 +15,10 @@ Enigma::~Enigma() {
 }
 
 void Enigma::addRotor(RotorType type) {
-    int i = 0;
-    while (m_rotors[i] != nullptr && i < m_numRotors) {
-        i++;
-    }
-
-    if (i < m_numRotors) {
-        m_rotors[i] = new Rotor(type);
-        m_rotors[i]->init();
+    if (rotorCount < m_numRotors) {
+        m_rotors[rotorCount] = new Rotor(type);
+        m_rotors[rotorCount]->init();
+        rotorCount++;
     }
 }
 
@@ -30,14 +27,14 @@ void Enigma::changeRotor(Rotor &rotor, int posIdx) {
 }
 
 void Enigma::setDailyKey(char *key) {
+    m_dailyKey = key;
+}
+
+void Enigma::setMessageKey(std::string key) {
     for (int i = 0; i < m_numRotors; ++i) {
         int turns = toInt(key[i]);
         m_rotors[i]->turn(turns);
     }
-}
-
-void Enigma::setMessageKey(char *key) {
-    m_msgKey = key;
 }
 
 void Enigma::reset() {
@@ -47,31 +44,73 @@ void Enigma::reset() {
 }
 
 std::string Enigma::encrypt(const std::string &msg) {
+    reset();
+    applyDailyKey();
+    std::string temp = msg;
+    temp.erase(std::remove_if(temp.begin(), temp.end(), ::isspace), temp.end());
     std::string s = "";
-    for (char c : msg) {
+    for (char c : temp) {
+        int ind = toInt(c);
         for (int i = 0; i < m_numRotors; ++i) {
-            c = toChar(m_rotors[i]->getCode(toInt(c)));
-            m_rotors[i]->turn(1);
+            ind = m_rotors[i]->getCode(ind);
         }
 
-        c = m_reflector.getCode(toInt(c));
+        ind = m_reflector.getCode(ind);
 
         for (int i = m_numRotors - 1; i >= 0; --i) {
-            c = toChar(m_rotors[i]->getCode(toInt(c)));
-            m_rotors[i]->turn(1);
+            ind = m_rotors[i]->getIndex(ind);
         }
-        s += c;
+
+        s += toChar(ind);
+
+        int j = 0;
+        m_rotors[j]->turn(1);
+        m_turns[j]++;
+        while (m_turns[j] >= 26 && j < m_numRotors) {
+            m_turns[j] -= 26;
+            j++;
+            m_rotors[j]->turn(1);
+            m_turns[j]++;
+        }
     }
     return s;
 }
 
 std::string Enigma::decrypt(const std::string &msg) {
-    return std::string();
+    reset();
+    applyDailyKey();
+
+    std::string s = "";
+    for (char c : msg) {
+        int ind = toInt(c);
+
+        for (int i = 0; i < m_numRotors; ++i) {
+            ind = m_rotors[i]->getCode(ind);
+        }
+
+        ind = m_reflector.getIndex(ind);
+
+        for (int i = m_numRotors - 1; i >= 0; --i) {
+            ind = m_rotors[i]->getIndex(ind);
+        }
+        s += toChar(ind);
+
+        int j = 0;
+        m_rotors[j]->turn(1);
+        m_turns[j]++;
+        while (m_turns[j] >= 26 && j < m_numRotors) {
+            m_turns[j] -= 26;
+            j++;
+            m_rotors[j]->turn(1);
+            m_turns[j]++;
+        }
+    }
+    return s;
 }
 
-void Enigma::applyMsgKey() {
+void Enigma::applyDailyKey() {
     for (int i = 0; i < m_numRotors; ++i) {
-        int turns = toInt(m_msgKey[i]);
+        int turns = toInt(m_dailyKey[i]);
         m_rotors[i]->turn(turns);
     }
 }
@@ -95,4 +134,7 @@ void Enigma::printConfig() {
         std::cout << "-------------Rotor " << i + 1 << "-------------" << std::endl;
         m_rotors[i]->print();
     }
+
+    std::cout << "-------------Reflector-------------" << std::endl;
+    m_reflector.print();
 }

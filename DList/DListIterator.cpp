@@ -1,7 +1,3 @@
-//
-// Created by Elias Salfinger on 20.11.19.
-//
-
 #include "headers/DListIterator.h"
 
 DListIterator::DListIterator(Node *start) : current(start) {}

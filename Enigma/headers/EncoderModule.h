@@ -1,7 +1,3 @@
-//
-// Created by Elias Salfinger on 28.11.19.
-//
-
 #ifndef ENIGMA_ENCODERMODULE_H
 #define ENIGMA_ENCODERMODULE_H
 
