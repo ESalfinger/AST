@@ -34,10 +34,14 @@ int main() {
     s1.addMember(&m07);
     s1.addMember(&m03);
 
+    cout << endl;
+
     cout << s.toString() << endl;
 
+    cout << endl;
+
     s.removeMember(m01.getMNumber());
-    //s.removeMember(s1.getMNumber());
+    s.removeMember(s1.getMNumber());
 
     cout << s.toString() << endl;
 

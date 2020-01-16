@@ -7,12 +7,14 @@ int main() {
     enigma.addRotor(ROTOR_TYPE_II);
     enigma.addRotor(ROTOR_TYPE_III);
     enigma.addRotor(ROTOR_TYPE_IV);
-    enigma.addRotor(ROTOR_TYPE_V);
 
     //enigma.printConfig();
     enigma.setDailyKey("abc");
-    std::string s = enigma.encrypt("Hello world");
-    std::cout << enigma.decrypt(s) << std::endl;
+    std::string msg = "Hello world";
+    std::string s = enigma.encrypt(msg);
+    std::cout << "Message: " << msg << std::endl;
+    std::cout << "Encrypted: " << s << std::endl;
+    std::cout << "Decrypted: " << enigma.decrypt(s) << std::endl;
 
     return 0;
 }

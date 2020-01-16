@@ -19,6 +19,8 @@ void Enigma::addRotor(RotorType type) {
         m_rotors[rotorCount] = new Rotor(type);
         m_rotors[rotorCount]->init();
         rotorCount++;
+    } else {
+        std::cout << "Max rotors reached!" << std::endl;
     }
 }
 
